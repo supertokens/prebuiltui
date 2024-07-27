@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# npm run build
+npm run build
 
 # Get the version of supertokens-auth-react from package.json
 version=$(grep -o '"supertokens-auth-react": "[^"]*"' package.json | sed -E 's/.*: "([^"]+)".*/\1/')
