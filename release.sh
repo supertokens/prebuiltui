@@ -22,20 +22,29 @@ fi
 new_file_name=${new_file_name#/}
 
 # Update the README.md file
-# Check if README.md has been updated
-if ! grep -q "cdn.jsdelivr.net/gh/supertokens/prebuiltui@v${version}/build/${new_file_name}" README.md; then
-    # If not updated, perform the sed command
-    sed -i '' "s|https://cdn.jsdelivr.net/gh/supertokens/prebuiltui@v[0-9.]+/build/static/js/[^.]+\.js|https://cdn.jsdelivr.net/gh/supertokens/prebuiltui@v${version}/build/${new_file_name}|g" README.md
+old_pattern="https://cdn.jsdelivr.net/gh/supertokens/prebuiltui.*\""
+new_pattern="https://cdn.jsdelivr.net/gh/supertokens/prebuiltui@v${version}/build/${new_file_name}\""
+
+if grep -q "$old_pattern" README.md; then
+    sed -i.bak "s|$old_pattern|$new_pattern|g" README.md
+    if [ $? -eq 0 ]; then
+        rm README.md.bak
+        echo "README.md has been updated with the new version and file name"
+    else
+        echo "Error: Failed to update README.md"
+        exit 1
+    fi
 else
-    echo "README.md already contains the correct version and file name"
+    echo "Error: Old pattern not found in README.md"
+    exit 1
 fi
 
-# # Commit the changes
-# git add README.md build
-# git commit -m "Update to version ${version}"
+# Commit the changes
+git add --all
+git commit -m "Release prep"
 
-# # Create and push the new tag
-# git tag "v${version}"
-# git push origin "v${version}"
+# Create and push the new tag
+git tag "v${version}"
+git push origin "v${version}"
 
-# echo "Successfully created and pushed tag v${version}"
+echo "Successfully created and pushed tag v${version}"
