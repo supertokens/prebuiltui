@@ -47,4 +47,6 @@ git commit -m "Release prep"
 git tag "v${version}"
 git push origin "v${version}"
 
+git push
+
 echo "Successfully created and pushed tag v${version}"
