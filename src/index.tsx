@@ -75,7 +75,7 @@ export let PreBuiltUIList: any[] = [];
     }
 };
 
-function supertokensInit(divId: string, customConfig: any) {
+function supertokensUIInit(divId: string, customConfig: any) {
     SuperTokens.init(customConfig);
 
     let element = document.getElementById(divId);
@@ -89,6 +89,6 @@ function supertokensInit(divId: string, customConfig: any) {
     }
 }
 
-(window as any).supertokensUIInit = supertokensInit;
+(window as any).supertokensUIInit = supertokensUIInit;
 
 window.dispatchEvent(new Event("supertokensScriptLoaded"));
