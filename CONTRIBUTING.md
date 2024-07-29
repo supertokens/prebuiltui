@@ -5,6 +5,13 @@
 npm i --dev
 ```
 
+## Start server for local testing
+```
+npm run start
+```
+
+This will start the server on `http://localhost:3000`, and the bundle can be accessed on `http://localhost:3000/static/js/bundle.js`
+
 ## Build
 ```
 npm run build

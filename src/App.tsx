@@ -1,19 +1,30 @@
-import { SuperTokensWrapper } from "supertokens-auth-react";
-import { getSuperTokensRoutesForReactRouterDom } from "supertokens-auth-react/ui";
-import { Routes, BrowserRouter as Router } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { SuperTokensWrapper, redirectToAuth } from "supertokens-auth-react";
+import { canHandleRoute, getRoutingComponent } from "supertokens-auth-react/ui";
 import { PreBuiltUIList } from "./index";
 
-
 function App() {
-    return (
-        <SuperTokensWrapper>
-            <Router>
-                <Routes>
-                    {getSuperTokensRoutesForReactRouterDom(require("react-router-dom"), PreBuiltUIList)}
-                </Routes>
-            </Router>
-        </SuperTokensWrapper>
-    );
+    const [showUi, setShowUi] = useState(false);
+
+    useEffect(() => {
+        if (canHandleRoute(PreBuiltUIList)) {
+            setShowUi(true);
+        } else {
+            redirectToAuth({
+                redirectBack: false
+            });
+        }
+    }, []);
+
+    if (showUi) {
+        return (
+            <SuperTokensWrapper>
+                {getRoutingComponent(PreBuiltUIList)}
+            </SuperTokensWrapper>
+        );
+    }
+
+    return null;
 }
 
 export default App;
