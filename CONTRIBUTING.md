@@ -12,6 +12,8 @@ npm run start
 
 This will start the server on `http://localhost:3000`, and the bundle can be accessed on `http://localhost:3000/static/js/bundle.js`
 
+Now you can create an example angular / vue app using `npx create-supertokens-app@latest` and change the bundle location in the code from the jsdeliver one to the local one to test it out.
+
 ## Build
 ```
 npm run build
