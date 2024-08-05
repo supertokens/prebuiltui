@@ -52,15 +52,15 @@ git push
 # set $SUPERTOKENS_API_KEY based on reading ./releasePassword file
 SUPERTOKENS_API_KEY=$(cat ./releasePassword)
 
-responseStatus=`curl -o $FILENAME -w "%{http_code}" -X PUT \
+responseStatus=$(curl -o /dev/null -s -w "%{http_code}" -X PUT \
     https://api.supertokens.io/0/frontend/auth-react \
     -H 'Content-Type: application/json' \
     -H 'api-version: 0' \
     -d "{
         \"uri\": \"https://cdn.jsdelivr.net/gh/supertokens/prebuiltui@v${version}/build/${new_file_name}\",
         \"password\": \"$SUPERTOKENS_API_KEY\"
-    }"`
-if [ $responseStatus -ne "200" ]
+    }")
+if [ "$responseStatus" -ne 200 ]
 then
     echo "failed PUT API to update js deliver uri on server with status code: $responseStatus. You need to manually call this API with the right url!"
     exit 1
