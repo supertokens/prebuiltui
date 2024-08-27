@@ -31,7 +31,7 @@ To integrate it with your project, you will need to add the following script tag
         });
     </script>
     <script defer="defer"
-        src="https://cdn.jsdelivr.net/gh/supertokens/prebuiltui@v0.45.1/build/static/js/main.0a6e3c10.js"></script>
+        src="https://cdn.jsdelivr.net/gh/supertokens/prebuiltui@v0.46.0/build/static/js/main.57ef81a3.js"></script>
 </head>
 
 <body>
