@@ -11,6 +11,7 @@ import EmailVerification from "supertokens-auth-react/recipe/emailverification"
 import MFA from "supertokens-auth-react/recipe/multifactorauth"
 import TOTP from "supertokens-auth-react/recipe/totp"
 import UserRoles from "supertokens-auth-react/recipe/userroles"
+import MultiTenancy from "supertokens-auth-react/recipe/multitenancy"
 
 import { EmailPasswordPreBuiltUI } from "supertokens-auth-react/recipe/emailpassword/prebuiltui";
 import { ThirdPartyPreBuiltUI } from "supertokens-auth-react/recipe/thirdparty/prebuiltui";
@@ -76,6 +77,7 @@ export let PreBuiltUIList: any[] = [];
     }
 };
 
+(window as any).supertokensUIMultitenancy = MultiTenancy;
 (window as any).supertokensUIUserRoles = UserRoles;
 
 function supertokensUIInit(divId: string, customConfig: any) {
