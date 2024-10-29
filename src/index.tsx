@@ -10,6 +10,7 @@ import Session from "supertokens-auth-react/recipe/session";
 import EmailVerification from "supertokens-auth-react/recipe/emailverification"
 import MFA from "supertokens-auth-react/recipe/multifactorauth"
 import TOTP from "supertokens-auth-react/recipe/totp"
+import OAuth2Provider from "supertokens-auth-react/recipe/oauth2provider"
 import UserRoles from "supertokens-auth-react/recipe/userroles"
 import MultiTenancy from "supertokens-auth-react/recipe/multitenancy"
 
@@ -20,6 +21,7 @@ import { SessionPreBuiltUI } from "supertokens-auth-react/recipe/session/prebuil
 import { EmailVerificationPreBuiltUI } from "supertokens-auth-react/recipe/emailverification/prebuiltui"
 import { MultiFactorAuthPreBuiltUI } from "supertokens-auth-react/recipe/multifactorauth/prebuiltui"
 import { TOTPPreBuiltUI } from "supertokens-auth-react/recipe/totp/prebuiltui"
+import { OAuth2ProviderPreBuiltUI } from "supertokens-auth-react/recipe/oauth2provider/prebuiltui"
 
 export let PreBuiltUIList: any[] = [];
 
@@ -74,6 +76,13 @@ export let PreBuiltUIList: any[] = [];
     init: (input: any) => {
         PreBuiltUIList.push(TOTPPreBuiltUI);
         return TOTP.init(input);
+    }
+};
+(window as any).supertokensUIOAuth2Provider = {
+    ...OAuth2Provider,
+    init: (input: any) => {
+        PreBuiltUIList.push(OAuth2ProviderPreBuiltUI);
+        return OAuth2Provider.init(input);
     }
 };
 
