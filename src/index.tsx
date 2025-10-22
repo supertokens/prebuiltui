@@ -87,7 +87,6 @@ export let PreBuiltUIList: any[] = [];
     return OAuth2Provider.init(input);
   },
 };
-
 (window as any).supertokensUIWebauthn = {
   ...Webauthn,
   init: (input: any) => {
